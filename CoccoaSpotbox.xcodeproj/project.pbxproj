@@ -10,7 +10,24 @@
 		1566CCDE1509116E008ED86F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1566CCDD1509116E008ED86F /* Foundation.framework */; };
 		1566CCE11509116E008ED86F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1566CCE01509116E008ED86F /* main.m */; };
 		1566CCE51509116E008ED86F /* CoccoaSpotbox.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1566CCE41509116E008ED86F /* CoccoaSpotbox.1 */; };
+		15E97AA6150919390015A560 /* CocoaLibSpotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1566CD0615091483008ED86F /* CocoaLibSpotify.framework */; };
+		15E97AA8150919470015A560 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E97AA7150919470015A560 /* CoreAudio.framework */; };
+		15E97AAA150919540015A560 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E97AA9150919540015A560 /* AudioUnit.framework */; };
+		15E97AAC1509195C0015A560 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E97AAB1509195C0015A560 /* Cocoa.framework */; };
+		15E97AAF150919860015A560 /* SpotboxPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E97AAE150919860015A560 /* SpotboxPlayer.m */; };
+		15E97ABC15091B2A0015A560 /* SPCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E97AB915091B2A0015A560 /* SPCircularBuffer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15E97ABD15091B2A0015A560 /* SPPlaybackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E97ABB15091B2A0015A560 /* SPPlaybackManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1566CD0515091483008ED86F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1566CD0115091483008ED86F /* CocoaLibSpotify Mac Framework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 503D630F13258041007772CA;
+			remoteInfo = CocoaLibSpotify;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		1566CCD71509116E008ED86F /* CopyFiles */ = {
@@ -29,8 +46,18 @@
 		1566CCD91509116E008ED86F /* CoccoaSpotbox */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CoccoaSpotbox; sourceTree = BUILT_PRODUCTS_DIR; };
 		1566CCDD1509116E008ED86F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1566CCE01509116E008ED86F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1566CCE31509116E008ED86F /* CoccoaSpotbox-Prefix.pch */ = {isa = PBXFileReference; path = "CoccoaSpotbox-Prefix.pch"; sourceTree = "<group>"; };
+		1566CCE31509116E008ED86F /* CoccoaSpotbox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoccoaSpotbox-Prefix.pch"; sourceTree = "<group>"; };
 		1566CCE41509116E008ED86F /* CoccoaSpotbox.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CoccoaSpotbox.1; sourceTree = "<group>"; };
+		1566CD0115091483008ED86F /* CocoaLibSpotify Mac Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CocoaLibSpotify Mac Framework.xcodeproj"; path = "../../sandbox/cocoalibspotify/Mac Framework/CocoaLibSpotify Mac Framework.xcodeproj"; sourceTree = "<group>"; };
+		15E97AA7150919470015A560 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		15E97AA9150919540015A560 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		15E97AAB1509195C0015A560 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		15E97AAD150919860015A560 /* SpotboxPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotboxPlayer.h; sourceTree = "<group>"; };
+		15E97AAE150919860015A560 /* SpotboxPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotboxPlayer.m; sourceTree = "<group>"; };
+		15E97AB815091B2A0015A560 /* SPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCircularBuffer.h; sourceTree = "<group>"; };
+		15E97AB915091B2A0015A560 /* SPCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCircularBuffer.m; sourceTree = "<group>"; };
+		15E97ABA15091B2A0015A560 /* SPPlaybackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlaybackManager.h; sourceTree = "<group>"; };
+		15E97ABB15091B2A0015A560 /* SPPlaybackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlaybackManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +65,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15E97AAC1509195C0015A560 /* Cocoa.framework in Frameworks */,
+				15E97AAA150919540015A560 /* AudioUnit.framework in Frameworks */,
+				15E97AA8150919470015A560 /* CoreAudio.framework in Frameworks */,
 				1566CCDE1509116E008ED86F /* Foundation.framework in Frameworks */,
+				15E97AA6150919390015A560 /* CocoaLibSpotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,7 +79,9 @@
 		1566CCCE1509116E008ED86F = {
 			isa = PBXGroup;
 			children = (
+				1566CD0115091483008ED86F /* CocoaLibSpotify Mac Framework.xcodeproj */,
 				1566CCDF1509116E008ED86F /* CoccoaSpotbox */,
+				15E97AB0150919A60015A560 /* Playback Helpers */,
 				1566CCDC1509116E008ED86F /* Frameworks */,
 				1566CCDA1509116E008ED86F /* Products */,
 			);
@@ -65,6 +98,9 @@
 		1566CCDC1509116E008ED86F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15E97AAB1509195C0015A560 /* Cocoa.framework */,
+				15E97AA9150919540015A560 /* AudioUnit.framework */,
+				15E97AA7150919470015A560 /* CoreAudio.framework */,
 				1566CCDD1509116E008ED86F /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -74,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				1566CCE01509116E008ED86F /* main.m */,
+				15E97AAD150919860015A560 /* SpotboxPlayer.h */,
+				15E97AAE150919860015A560 /* SpotboxPlayer.m */,
 				1566CCE41509116E008ED86F /* CoccoaSpotbox.1 */,
 				1566CCE21509116E008ED86F /* Supporting Files */,
 			);
@@ -86,6 +124,25 @@
 				1566CCE31509116E008ED86F /* CoccoaSpotbox-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1566CD0215091483008ED86F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1566CD0615091483008ED86F /* CocoaLibSpotify.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15E97AB0150919A60015A560 /* Playback Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				15E97AB815091B2A0015A560 /* SPCircularBuffer.h */,
+				15E97AB915091B2A0015A560 /* SPCircularBuffer.m */,
+				15E97ABA15091B2A0015A560 /* SPPlaybackManager.h */,
+				15E97ABB15091B2A0015A560 /* SPPlaybackManager.m */,
+			);
+			name = "Playback Helpers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +184,12 @@
 			mainGroup = 1566CCCE1509116E008ED86F;
 			productRefGroup = 1566CCDA1509116E008ED86F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1566CD0215091483008ED86F /* Products */;
+					ProjectRef = 1566CD0115091483008ED86F /* CocoaLibSpotify Mac Framework.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1566CCD81509116E008ED86F /* CoccoaSpotbox */,
@@ -134,12 +197,25 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		1566CD0615091483008ED86F /* CocoaLibSpotify.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaLibSpotify.framework;
+			remoteRef = 1566CD0515091483008ED86F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1566CCD51509116E008ED86F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1566CCE11509116E008ED86F /* main.m in Sources */,
+				15E97AAF150919860015A560 /* SpotboxPlayer.m in Sources */,
+				15E97ABC15091B2A0015A560 /* SPCircularBuffer.m in Sources */,
+				15E97ABD15091B2A0015A560 /* SPPlaybackManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +272,10 @@
 		1566CCE91509116E008ED86F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/CocoaLibSpotify_Mac_Framework-czescddkmvfcongbmikybgijugpz/Build/Products/Debug\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoccoaSpotbox/CoccoaSpotbox-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -205,6 +285,10 @@
 		1566CCEA1509116E008ED86F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/CocoaLibSpotify_Mac_Framework-czescddkmvfcongbmikybgijugpz/Build/Products/Debug\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoccoaSpotbox/CoccoaSpotbox-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -230,6 +314,7 @@
 				1566CCEA1509116E008ED86F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
