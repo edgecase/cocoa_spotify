@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15628E4B1509471B00288D72 /* ZmqDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 15628E4A1509471B00288D72 /* ZmqDispatch.m */; };
+		15628E4C1509480600288D72 /* libzmq.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15628E47150946EF00288D72 /* libzmq.dylib */; };
+		15628E56150972F800288D72 /* libzmqobjc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15628E55150972F800288D72 /* libzmqobjc.a */; };
 		1566CCDE1509116E008ED86F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1566CCDD1509116E008ED86F /* Foundation.framework */; };
 		1566CCE11509116E008ED86F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1566CCE01509116E008ED86F /* main.m */; };
 		1566CCE51509116E008ED86F /* CoccoaSpotbox.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1566CCE41509116E008ED86F /* CoccoaSpotbox.1 */; };
@@ -43,6 +46,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		15628E47150946EF00288D72 /* libzmq.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzmq.dylib; path = usr/local/lib/libzmq.dylib; sourceTree = SDKROOT; };
+		15628E491509471B00288D72 /* ZmqDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZmqDispatch.h; sourceTree = "<group>"; };
+		15628E4A1509471B00288D72 /* ZmqDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZmqDispatch.m; sourceTree = "<group>"; };
+		15628E4F1509490300288D72 /* ZMQObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMQObjC.h; sourceTree = "<group>"; };
+		15628E55150972F800288D72 /* libzmqobjc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzmqobjc.a; path = "../../sandbox/objc-zmq/build/Debug/libzmqobjc.a"; sourceTree = "<group>"; };
 		1566CCD91509116E008ED86F /* CoccoaSpotbox */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CoccoaSpotbox; sourceTree = BUILT_PRODUCTS_DIR; };
 		1566CCDD1509116E008ED86F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1566CCE01509116E008ED86F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -65,6 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15628E56150972F800288D72 /* libzmqobjc.a in Frameworks */,
+				15628E4C1509480600288D72 /* libzmq.dylib in Frameworks */,
 				15E97AAC1509195C0015A560 /* Cocoa.framework in Frameworks */,
 				15E97AAA150919540015A560 /* AudioUnit.framework in Frameworks */,
 				15E97AA8150919470015A560 /* CoreAudio.framework in Frameworks */,
@@ -98,6 +108,9 @@
 		1566CCDC1509116E008ED86F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15628E55150972F800288D72 /* libzmqobjc.a */,
+				15628E4F1509490300288D72 /* ZMQObjC.h */,
+				15628E47150946EF00288D72 /* libzmq.dylib */,
 				15E97AAB1509195C0015A560 /* Cocoa.framework */,
 				15E97AA9150919540015A560 /* AudioUnit.framework */,
 				15E97AA7150919470015A560 /* CoreAudio.framework */,
@@ -109,10 +122,12 @@
 		1566CCDF1509116E008ED86F /* CoccoaSpotbox */ = {
 			isa = PBXGroup;
 			children = (
-				1566CCE01509116E008ED86F /* main.m */,
-				15E97AAD150919860015A560 /* SpotboxPlayer.h */,
-				15E97AAE150919860015A560 /* SpotboxPlayer.m */,
 				1566CCE41509116E008ED86F /* CoccoaSpotbox.1 */,
+				15E97AAD150919860015A560 /* SpotboxPlayer.h */,
+				15628E491509471B00288D72 /* ZmqDispatch.h */,
+				1566CCE01509116E008ED86F /* main.m */,
+				15E97AAE150919860015A560 /* SpotboxPlayer.m */,
+				15628E4A1509471B00288D72 /* ZmqDispatch.m */,
 				1566CCE21509116E008ED86F /* Supporting Files */,
 			);
 			path = CoccoaSpotbox;
@@ -216,6 +231,7 @@
 				15E97AAF150919860015A560 /* SpotboxPlayer.m in Sources */,
 				15E97ABC15091B2A0015A560 /* SPCircularBuffer.m in Sources */,
 				15E97ABD15091B2A0015A560 /* SPPlaybackManager.m in Sources */,
+				15628E4B1509471B00288D72 /* ZmqDispatch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +294,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoccoaSpotbox/CoccoaSpotbox-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../sandbox/objc-zmq/build/Debug\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -291,6 +311,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoccoaSpotbox/CoccoaSpotbox-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../sandbox/objc-zmq/build/Debug\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

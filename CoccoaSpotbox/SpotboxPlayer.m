@@ -15,7 +15,8 @@
 - (id) init {
   self = [super init];
   if (self) {
-    playback_manager = [[SPPlaybackManager alloc] initWithPlaybackSession:[SPSession sharedSession]];
+    SPSession *session = [SPSession sharedSession];
+    playback_manager = [[SPPlaybackManager alloc] initWithPlaybackSession:session];
   }
   return self;
 }
@@ -34,19 +35,51 @@
     NSError *error = nil;
     
     if (![self.playback_manager playTrack:track error:&error]) {
-      NSLog(@"shit went wrong");
+      NSLog(@"shit went wrong: %@", error);
     }
     return;
   }
   NSBeep();
 }
 
-// ********** Session Delegate *********** //
+- (void) pause_track {
+  
+}
+
+- (void) stop_track {
+  [playback_manager.playbackSession unloadPlayback];
+}
+
+// ********** ZmqDispatch Delegate ******* //
+
+- (void) zmqDispatchDidReceiveData:(ZmqDispatch *)dispatcher {
+  if ([playback_manager isPlaying]) {
+    NSTimeInterval pos       = [playback_manager trackPosition];
+    NSString *track_position = [[NSString alloc] initWithFormat:@"%d", ((long)pos % 60)];
+    NSString *message        = [NSString stringWithFormat:@"%@::%@::%@", @"spotbox:server", @"track_progres", track_position];
+    NSData* data             = [message dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [dispatcher.pub sendData:data withFlags:ZMQ_NOBLOCK];
+  }
+}
+
+- (void) zmqDispatchDidReceivePlay:(NSString *)track_url {
+  NSLog(@"PLAY");
+  [self play_track:track_url];
+}
+
+- (void) zmqDispatchDidReceiveStop {
+  [self stop_track];
+}
+
+- (void) zmqDispatchDidReceivePause {
+  [self pause_track];
+}
+
+// **********  Session Delegate ********** //
 
 - (void) sessionDidLoginSuccessfully:(SPSession *)aSession {
   NSLog(@"logged in");
-  NSString *spotify_str = @"spotify:track:18lwMD3frXxiVWBlztdijW";
-  [self play_track:spotify_str];
 }
 
 - (void) session:(SPSession *)aSession didFailToLoginWithError:(NSError *)error {
@@ -62,11 +95,17 @@
 }
 
 - (void)sessionDidChangeMetadata:(SPSession *)aSession; {
-  NSLog(@"session meta data changed");
+  NSLog(@"meta data changed");
 }
 
 - (void)session:(SPSession *)aSession recievedMessageForUser:(NSString *)aMessage; {  
   NSLog(@"received msg for user: %@", aMessage);
+}
+
+// Unregister observers
+
+- (void) dealloc {
+  
 }
 
 @end
