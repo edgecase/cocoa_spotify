@@ -62,7 +62,7 @@
   if ([playback_manager isPlaying]) {
     NSTimeInterval pos       = [playback_manager trackPosition];
     NSString *track_position = [[NSString alloc] initWithFormat:@"%d", ((long)pos % 60)];
-    NSString *message        = [NSString stringWithFormat:@"%@::%@::%@", @"spotbox:server", @"track_progres", track_position];
+    NSString *message        = [NSString stringWithFormat:@"%@::%@::%@", @"spotbox:server", @"track_progress", track_position];
     NSData* data             = [message dataUsingEncoding:NSUTF8StringEncoding];
     
     [dispatcher.pub sendData:data withFlags:ZMQ_NOBLOCK];
