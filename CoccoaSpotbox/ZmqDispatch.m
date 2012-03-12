@@ -61,12 +61,12 @@
     NSDictionary *parsedMessage = [self parseMessage:msg];
     NSString *method_name       = [parsedMessage valueForKey:@"method"];
     
-    if ([method_name isEqual:@"play"]) {
+    if ([method_name isEqualToString:@"play"]) {
       NSString *track_str = [[parsedMessage valueForKey:@"args"] objectAtIndex:0];
       [delegate zmqDispatchDidReceivePlay:track_str];
-    } else if ([method_name isEqual:@"stop"]) {
+    } else if ([method_name isEqualToString:@"stop"]) {
       [delegate zmqDispatchDidReceiveStop];
-    } else if ([method_name isEqual:@"pause"]) {
+    } else if ([method_name isEqualToString:@"pause"] || [method_name isEqualToString:@"unpause"]) {
       [delegate zmqDispatchDidReceivePause];
     } else {
       NSLog(@"Unsupported method: %@ w/ raw msg: %@", method_name, msg);

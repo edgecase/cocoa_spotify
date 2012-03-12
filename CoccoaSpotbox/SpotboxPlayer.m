@@ -43,7 +43,13 @@
 }
 
 - (void) pause_track {
-  
+  if ([playback_manager isPlaying]) {
+    [playback_manager setIsPlaying:NO];
+  } else {
+    NSTimeInterval track_position = [playback_manager trackPosition];
+    [playback_manager seekToTrackPosition:track_position];
+    [playback_manager setIsPlaying:YES];
+  }
 }
 
 - (void) stop_track {

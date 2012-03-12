@@ -11,7 +11,7 @@
 #import "ZmqDispatch.h"
 
 @interface SpotboxPlayer : NSObject <SPSessionDelegate, ZmqDispatchDelegate> {
-  SPPlaybackManager *playback_manager;  
+  SPPlaybackManager *playback_manager;
 }
 
 @property(retain) SPPlaybackManager *playback_manager;
