@@ -61,8 +61,6 @@
     NSDictionary *parsedMessage = [self parseMessage:msg];
     NSString *method_name       = [parsedMessage valueForKey:@"method"];
     
-    NSLog(@"message!!!!!! %@", parsedMessage);
-    
     if ([method_name isEqualToString:@"play"]) {
       NSString *track_str = [[parsedMessage valueForKey:@"args"] objectAtIndex:0];
       [delegate zmqDispatchDidReceivePlay:track_str];

@@ -15,6 +15,7 @@
 }
 
 @property(retain) SPPlaybackManager *playback_manager;
+@property(retain) ZmqDispatch *dispatcher;
 
 - (void) play_track:(NSString *)track_url;
 - (void) stop_track;

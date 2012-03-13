@@ -10,17 +10,38 @@
 
 @implementation SpotboxPlayer
 
-@synthesize playback_manager;
+@synthesize playback_manager, dispatcher;
 
 - (id) init {
   self = [super init];
   if (self) {
     SPSession *session = [SPSession sharedSession];
     playback_manager = [[SPPlaybackManager alloc] initWithPlaybackSession:session];
+    
+    [self addObserver:self
+           forKeyPath:@"playback_manager.currentTrack"
+              options:NSKeyValueObservingOptionNew
+              context:nil];
   }
   return self;
 }
 
+// Observe currentTrack going to NULL, this signifies the end of a track
+//
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if ([keyPath isEqualToString:@"playback_manager.currentTrack"]) {
+    if ([change valueForKey:@"new"] == [NSNull null]) {
+      NSLog(@"track ended");
+      NSString *message = [NSString stringWithFormat:@"%@::%@", @"spotbox:server", @"track_ended"];
+      NSData *data      = [message dataUsingEncoding:NSUTF8StringEncoding];
+      [dispatcher.pub sendData:data withFlags:ZMQ_NOBLOCK];   
+    }
+  }
+}
+
+
+// Play a spotify track
+//
 - (void) play_track:(NSString *)track_str {
   NSURL *track_url = [[NSURL alloc] initWithString:track_str];
   SPTrack *track = [[SPSession sharedSession] trackForURL:track_url];
@@ -42,6 +63,8 @@
   NSBeep();
 }
 
+// Pause/Unpause track
+//
 - (void) pause_track {
   if ([playback_manager isPlaying]) {
     [playback_manager setIsPlaying:NO];
@@ -52,25 +75,37 @@
   }
 }
 
+// Stop a track
+//
 - (void) stop_track {
   [playback_manager.playbackSession unloadPlayback];
 }
 
-// ********** ZmqDispatch Delegate ******* //
-
-- (void) zmqDispatchDidReceiveData:(ZmqDispatch *)dispatcher {
+// Report track progress of currently playing track
+//
+- (void) report_track_progress {
   if ([playback_manager isPlaying]) {
     NSTimeInterval pos       = [playback_manager trackPosition];
     NSString *track_position = [[NSString alloc] initWithFormat:@"%d", (long)pos];
     NSString *message        = [NSString stringWithFormat:@"%@::%@::%@", @"spotbox:server", @"track_progress", track_position];
-    NSData* data             = [message dataUsingEncoding:NSUTF8StringEncoding];
-    
+    NSData *data             = [message dataUsingEncoding:NSUTF8StringEncoding];
+  
     [dispatcher.pub sendData:data withFlags:ZMQ_NOBLOCK];
   }
 }
 
+// ********** ZmqDispatch Delegate ******* //
+
+// Called when zmq dispatcher receives data. Assigns self.dispatcher so this class can publish
+// 
+- (void) zmqDispatchDidReceiveData:(ZmqDispatch *)aDispatcher {
+  // Set dispatcher upon successfully recieving data
+  if (!aDispatcher) { self.dispatcher = aDispatcher; }
+  
+  [self report_track_progress];
+}
+
 - (void) zmqDispatchDidReceivePlay:(NSString *)track_url {
-  NSLog(@"PLAY");
   [self play_track:track_url];
 }
 
@@ -108,10 +143,10 @@
   NSLog(@"received msg for user: %@", aMessage);
 }
 
-// Unregister observers
+// Remove observers
 
 - (void) dealloc {
-  
+  [self removeObserver:self forKeyPath:@"playback_manager.currentTrack"];
 }
 
 @end

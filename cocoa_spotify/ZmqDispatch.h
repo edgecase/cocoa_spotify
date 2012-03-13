@@ -14,11 +14,8 @@
 @protocol ZmqDispatchDelegate <NSObject>
 
 - (void) zmqDispatchDidReceivePlay:(NSString *)track_url;
-
-@optional
-- (void) zmqDispatchDidReceiveData:(ZmqDispatch *)dispatcher;
+- (void) zmqDispatchDidReceiveData:(ZmqDispatch *)aDispatcher;
 - (void) zmqDispatchDidReceiveStop;
-- (void) zmqDispatchDidReceiveNext;
 - (void) zmqDispatchDidReceivePause;
 
 @end
