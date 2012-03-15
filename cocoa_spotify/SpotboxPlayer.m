@@ -100,7 +100,7 @@
 // 
 - (void) zmqDispatchDidReceiveData:(ZmqDispatch *)aDispatcher {
   // Set dispatcher upon successfully recieving data
-  if (!aDispatcher) { self.dispatcher = aDispatcher; }
+  if (!dispatcher) { self.dispatcher = aDispatcher; }
   
   [self report_track_progress];
 }
