@@ -17,6 +17,9 @@
 @property(retain) SPPlaybackManager *playback_manager;
 @property(retain) ZmqDispatch *dispatcher;
 
+- (id) initWithDispatcher:(ZmqDispatch *)aDispatcher;
+
+- (void) sendMessage:(NSString *)msg;
 - (void) play_track:(NSString *)track_url;
 - (void) stop_track;
 - (void) pause_track;

@@ -54,7 +54,7 @@
 - (void) receiveData:(NSTimer *)timer {
   NSData *data = [sub receiveDataWithFlags:ZMQ_NOBLOCK];
   
-  [delegate zmqDispatchDidReceiveData:self]; // provide hook for delegates
+  [delegate zmqDispatchDidReceiveData]; // provide hook for delegates
   
   if (data) {
     NSString *msg               = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];

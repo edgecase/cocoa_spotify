@@ -30,7 +30,7 @@ int main (int argc, const char * argv[]) {
                                                    error:nil];
     
     // Initialize spotify player    
-    SpotboxPlayer *player = [[SpotboxPlayer alloc] init];
+    SpotboxPlayer *player = [[SpotboxPlayer alloc] initWithDispatcher:dispatcher];
     [dispatcher setDelegate:player];
     [[SPSession sharedSession] setDelegate:player];
     
