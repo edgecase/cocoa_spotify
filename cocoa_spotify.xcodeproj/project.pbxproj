@@ -7,19 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		151B8FA3150E5053005F8198 /* libzmqobjc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 151B8FA2150E5053005F8198 /* libzmqobjc.a */; };
 		1522F232150E6647008E2EA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1522F22C150E6647008E2EA3 /* main.m */; };
 		1522F233150E6647008E2EA3 /* SpotboxPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1522F22E150E6647008E2EA3 /* SpotboxPlayer.m */; };
 		1522F234150E6647008E2EA3 /* ZmqDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1522F230150E6647008E2EA3 /* ZmqDispatch.m */; };
-		15628E4C1509480600288D72 /* libzmq.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15628E47150946EF00288D72 /* libzmq.dylib */; };
 		1566CCDE1509116E008ED86F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1566CCDD1509116E008ED86F /* Foundation.framework */; };
-		15DD48E6150E648C002870E0 /* CocoaLibSpotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DD48E5150E648C002870E0 /* CocoaLibSpotify.framework */; };
 		15E97AA8150919470015A560 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E97AA7150919470015A560 /* CoreAudio.framework */; };
 		15E97AAA150919540015A560 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E97AA9150919540015A560 /* AudioUnit.framework */; };
 		15E97AAC1509195C0015A560 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E97AAB1509195C0015A560 /* Cocoa.framework */; };
 		15E97ABC15091B2A0015A560 /* SPCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E97AB915091B2A0015A560 /* SPCircularBuffer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		15E97ABD15091B2A0015A560 /* SPPlaybackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E97ABB15091B2A0015A560 /* SPPlaybackManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		152FDB1A1512DEFA000EEB28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 152FDB161512DEFA000EEB28 /* CocoaLibSpotify Mac Framework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 503D630F13258041007772CA;
+			remoteInfo = CocoaLibSpotify;
+		};
+		15502A1F1512E5A50075A1E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15502A1A1512E5A50075A1E1 /* zmqobjc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F62DF4F11DED50C008EA78B;
+			remoteInfo = "zmqobjc (static)";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		1566CCD71509116E008ED86F /* CopyFiles */ = {
@@ -34,19 +48,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		151B8FA2150E5053005F8198 /* libzmqobjc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzmqobjc.a; sourceTree = "<group>"; };
-		1522F229150E6647008E2EA3 /* cocoa_spotify.1 */ = {isa = PBXFileReference; fileEncoding = 4; path = cocoa_spotify.1; sourceTree = "<group>"; };
+		1522F229150E6647008E2EA3 /* cocoa_spotify.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = cocoa_spotify.1; sourceTree = "<group>"; };
 		1522F22A150E6647008E2EA3 /* cocoa_spotify-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cocoa_spotify-Prefix.pch"; sourceTree = "<group>"; };
 		1522F22C150E6647008E2EA3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1522F22D150E6647008E2EA3 /* SpotboxPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotboxPlayer.h; sourceTree = "<group>"; };
 		1522F22E150E6647008E2EA3 /* SpotboxPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotboxPlayer.m; sourceTree = "<group>"; };
 		1522F22F150E6647008E2EA3 /* ZmqDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZmqDispatch.h; sourceTree = "<group>"; };
 		1522F230150E6647008E2EA3 /* ZmqDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZmqDispatch.m; sourceTree = "<group>"; };
-		15628E47150946EF00288D72 /* libzmq.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzmq.dylib; path = usr/local/lib/libzmq.dylib; sourceTree = SDKROOT; };
-		15628E4F1509490300288D72 /* ZMQObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMQObjC.h; sourceTree = "<group>"; };
+		152FDB161512DEFA000EEB28 /* CocoaLibSpotify Mac Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CocoaLibSpotify Mac Framework.xcodeproj"; path = "../../../cocoalibspotify/Mac Framework/CocoaLibSpotify Mac Framework.xcodeproj"; sourceTree = "<group>"; };
+		15502A1A1512E5A50075A1E1 /* zmqobjc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = zmqobjc.xcodeproj; path = "../../../objc-zmq/zmqobjc.xcodeproj"; sourceTree = "<group>"; };
 		1566CCD91509116E008ED86F /* cocoa_spotify */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoa_spotify; sourceTree = BUILT_PRODUCTS_DIR; };
 		1566CCDD1509116E008ED86F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		15DD48E5150E648C002870E0 /* CocoaLibSpotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLibSpotify.framework; sourceTree = "<group>"; };
 		15E97AA7150919470015A560 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		15E97AA9150919540015A560 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		15E97AAB1509195C0015A560 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -61,13 +73,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15628E4C1509480600288D72 /* libzmq.dylib in Frameworks */,
 				15E97AAC1509195C0015A560 /* Cocoa.framework in Frameworks */,
 				15E97AAA150919540015A560 /* AudioUnit.framework in Frameworks */,
 				15E97AA8150919470015A560 /* CoreAudio.framework in Frameworks */,
 				1566CCDE1509116E008ED86F /* Foundation.framework in Frameworks */,
-				151B8FA3150E5053005F8198 /* libzmqobjc.a in Frameworks */,
-				15DD48E6150E648C002870E0 /* CocoaLibSpotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,9 +105,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		152FDB171512DEFA000EEB28 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				152FDB1B1512DEFA000EEB28 /* CocoaLibSpotify.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15502A1B1512E5A50075A1E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15502A201512E5A50075A1E1 /* libzmqobjc.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		1566CCCE1509116E008ED86F = {
 			isa = PBXGroup;
 			children = (
+				15502A1A1512E5A50075A1E1 /* zmqobjc.xcodeproj */,
+				152FDB161512DEFA000EEB28 /* CocoaLibSpotify Mac Framework.xcodeproj */,
 				1522F227150E6647008E2EA3 /* cocoa_spotify */,
 				15E97AB0150919A60015A560 /* Playback Helpers */,
 				1566CCDC1509116E008ED86F /* Frameworks */,
@@ -117,10 +144,6 @@
 		1566CCDC1509116E008ED86F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				15DD48E5150E648C002870E0 /* CocoaLibSpotify.framework */,
-				151B8FA2150E5053005F8198 /* libzmqobjc.a */,
-				15628E4F1509490300288D72 /* ZMQObjC.h */,
-				15628E47150946EF00288D72 /* libzmq.dylib */,
 				15E97AAB1509195C0015A560 /* Cocoa.framework */,
 				15E97AA9150919540015A560 /* AudioUnit.framework */,
 				15E97AA7150919470015A560 /* CoreAudio.framework */,
@@ -179,12 +202,39 @@
 			mainGroup = 1566CCCE1509116E008ED86F;
 			productRefGroup = 1566CCDA1509116E008ED86F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 152FDB171512DEFA000EEB28 /* Products */;
+					ProjectRef = 152FDB161512DEFA000EEB28 /* CocoaLibSpotify Mac Framework.xcodeproj */;
+				},
+				{
+					ProductGroup = 15502A1B1512E5A50075A1E1 /* Products */;
+					ProjectRef = 15502A1A1512E5A50075A1E1 /* zmqobjc.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1566CCD81509116E008ED86F /* cocoa_spotify */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		152FDB1B1512DEFA000EEB28 /* CocoaLibSpotify.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaLibSpotify.framework;
+			remoteRef = 152FDB1A1512DEFA000EEB28 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		15502A201512E5A50075A1E1 /* libzmqobjc.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libzmqobjc.a;
+			remoteRef = 15502A1F1512E5A50075A1E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1566CCD51509116E008ED86F /* Sources */ = {
@@ -252,40 +302,54 @@
 		1566CCE91509116E008ED86F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/CocoaLibSpotify_Mac_Framework-czescddkmvfcongbmikybgijugpz/Build/Products/Debug\"",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/CocoaLibSpotify_Mac_Framework-czescddkmvfcongbmikybgijugpz/Build/Products/Debug\"",
+					"${CONFIGURATION_BUILD_DIR}/CocoaLibSpotify.framework/Versions/Frameworks/**",
+					"${SRCROOT}/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocoa_spotify/cocoa_spotify-Prefix.pch";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../sandbox/objc-zmq/build/Debug\"",
-					"\"$(SRCROOT)\"",
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					FRAMEWORK_SEARCH_PATHS,
+					"=",
+					"${CONFIGURATION_BUILD_DIR}/CocoaLibSpotify.framework/Versions/Frameworks/**",
+					"${SRCROOT}/**",
+					FRAMEWORK_SEARCH_PATHS,
+					"=",
+					"${CONFIGURATION_BUILD_DIR}/CocoaLibSpotify.framework/Versions/Frameworks/**",
+					"${SRCROOT}/**",
 				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
 				PRODUCT_NAME = cocoa_spotify;
+				USER_HEADER_SEARCH_PATHS = "${CONFIGURATION_BUILD_DIR}/** FRAMEWORK_SEARCH_PATHS = ${CONFIGURATION_BUILD_DIR}/CocoaLibSpotify.framework/Versions/Frameworks/** ${SRCROOT}/** FRAMEWORK_SEARCH_PATHS = ${CONFIGURATION_BUILD_DIR}/CocoaLibSpotify.framework/Versions/Frameworks/** ${SRCROOT}/**";
 			};
 			name = Debug;
 		};
 		1566CCEA1509116E008ED86F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/CocoaLibSpotify_Mac_Framework-czescddkmvfcongbmikybgijugpz/Build/Products/Debug\"",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/CocoaLibSpotify_Mac_Framework-czescddkmvfcongbmikybgijugpz/Build/Products/Debug\"",
+					"$(CONFIGURATION_BUILD_DIR)/CocoaLibSpotify.framework/Versions/Frameworks/**",
+					"$(SRCROOT)/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocoa_spotify/cocoa_spotify-Prefix.pch";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../sandbox/objc-zmq/build/Debug\"",
-					"\"$(SRCROOT)\"",
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					FRAMEWORK_SEARCH_PATHS,
+					"=",
+					"${CONFIGURATION_BUILD_DIR}/CocoaLibSpotify.framework/Versions/Frameworks/**",
+					"${SRCROOT}/**",
+					FRAMEWORK_SEARCH_PATHS,
+					"=",
+					"${CONFIGURATION_BUILD_DIR}/CocoaLibSpotify.framework/Versions/Frameworks/**",
+					"${SRCROOT}/**",
 				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
 				PRODUCT_NAME = cocoa_spotify;
+				USER_HEADER_SEARCH_PATHS = "${CONFIGURATION_BUILD_DIR} FRAMEWORK_SEARCH_PATHS = ${CONFIGURATION_BUILD_DIR}/CocoaLibSpotify.framework/Versions/Frameworks/** ${SRCROOT}/** FRAMEWORK_SEARCH_PATHS = ${CONFIGURATION_BUILD_DIR}/CocoaLibSpotify.framework/Versions/Frameworks/** ${SRCROOT}/**";
 			};
 			name = Release;
 		};

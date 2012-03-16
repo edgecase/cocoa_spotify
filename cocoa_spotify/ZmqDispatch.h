@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZMQObjC.h"
+#import "ZMQSocket.h"
+#import "ZMQContext.h"
 
 @class ZmqDispatch;
 

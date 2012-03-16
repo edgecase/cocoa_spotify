@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZMQObjC.h"
+#import "ZMQContext.h"
 #import <CocoaLibSpotify/CocoaLibSpotify.h>
 #import "SpotboxPlayer.h"
 #import "ZmqDispatch.h"
