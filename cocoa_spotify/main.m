@@ -11,7 +11,6 @@
 #import <CocoaLibSpotify/CocoaLibSpotify.h>
 #import "SpotboxPlayer.h"
 #import "ZmqDispatch.h"
-
 #import "config.h"
 #include "spotify_appkey.c"
 

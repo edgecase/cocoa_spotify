@@ -35,7 +35,7 @@
 
 /* Begin PBXFileReference section */
 		151B8FA2150E5053005F8198 /* libzmqobjc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzmqobjc.a; sourceTree = "<group>"; };
-		1522F229150E6647008E2EA3 /* cocoa_spotify.1 */ = {isa = PBXFileReference; fileEncoding = 4; path = cocoa_spotify.1; sourceTree = "<group>"; };
+		1522F229150E6647008E2EA3 /* cocoa_spotify.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = cocoa_spotify.1; sourceTree = "<group>"; };
 		1522F22A150E6647008E2EA3 /* cocoa_spotify-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cocoa_spotify-Prefix.pch"; sourceTree = "<group>"; };
 		1522F22C150E6647008E2EA3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1522F22D150E6647008E2EA3 /* SpotboxPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotboxPlayer.h; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 		1566CCD01509116E008ED86F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = Edgecase;
 			};
 			buildConfigurationList = 1566CCD31509116E008ED86F /* Build configuration list for PBXProject "cocoa_spotify" */;
@@ -209,6 +209,10 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"${SRCROOT}",
+					"${SRCROOT}/CocoaLibSpotify.framework/**",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -237,6 +241,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"${SRCROOT}",
+					"${SRCROOT}/CocoaLibSpotify.framework/**",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -252,18 +260,20 @@
 		1566CCE91509116E008ED86F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/CocoaLibSpotify_Mac_Framework-czescddkmvfcongbmikybgijugpz/Build/Products/Debug\"",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/CocoaLibSpotify_Mac_Framework-czescddkmvfcongbmikybgijugpz/Build/Products/Debug\"",
+					"${SRCROOT}",
+					"${SRCROOT}/CocoaLibSpotify.framework/**",
 				);
+				FRAMEWORK_VERSION = " ";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocoa_spotify/cocoa_spotify-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
+				LD_RUNPATH_SEARCH_PATHS = "${SRCROOT}";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../sandbox/objc-zmq/build/Debug\"",
-					"\"$(SRCROOT)\"",
+					"${SRCROOT}/CocoaLibSpotify.framework/**",
+					"${SRCROOT}",
 				);
 				PRODUCT_NAME = cocoa_spotify;
 			};
@@ -272,18 +282,20 @@
 		1566CCEA1509116E008ED86F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/CocoaLibSpotify_Mac_Framework-czescddkmvfcongbmikybgijugpz/Build/Products/Debug\"",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/CocoaLibSpotify_Mac_Framework-czescddkmvfcongbmikybgijugpz/Build/Products/Debug\"",
+					"$(SRCROOT)",
+					"$(SRCROOT)/CocoaLibSpotify.framework/**",
 				);
+				FRAMEWORK_VERSION = " ";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocoa_spotify/cocoa_spotify-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../sandbox/objc-zmq/build/Debug\"",
-					"\"$(SRCROOT)\"",
+					"${SRCROOT}",
+					"${CONFIGURATION_BUILD_DIR}/CocoaLibSpotify.framework/Versions/A",
 				);
 				PRODUCT_NAME = cocoa_spotify;
 			};
