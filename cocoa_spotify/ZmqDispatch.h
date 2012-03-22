@@ -13,6 +13,7 @@
 
 @protocol ZmqDispatchDelegate <NSObject>
 
+@optional
 - (void) zmqDispatchDidReceivePlay:(NSString *)track_url;
 - (void) zmqDispatchDidReceiveData;
 - (void) zmqDispatchDidReceiveStop;
@@ -20,7 +21,9 @@
 
 @end
 
-@interface ZmqDispatch : NSObject
+@interface ZmqDispatch : NSObject {
+  NSNotificationCenter *zmqNotificationCenter;
+}
 
 @property (strong)ZMQSocket *pub;
 @property (strong)ZMQSocket *sub;

@@ -68,6 +68,8 @@
       [delegate zmqDispatchDidReceiveStop];
     } else if ([method_name isEqualToString:@"pause"] || [method_name isEqualToString:@"unpause"]) {
       [delegate zmqDispatchDidReceivePause];
+    } else if ([method_name isEqualToString:@"load_playlist"]) {
+      [[NSNotificationCenter defaultCenter] postNotificationName:method_name object:self userInfo:parsedMessage];
     } else {
       NSLog(@"Unsupported method: %@ w/ raw msg: %@", method_name, msg);
     }

@@ -10,6 +10,7 @@
 #import "ZMQObjC.h"
 #import <CocoaLibSpotify/CocoaLibSpotify.h>
 #import "SpotboxPlayer.h"
+#import "PlaylistBootstrap.h"
 #import "ZmqDispatch.h"
 #import "config.h"
 #include "spotify_appkey.c"
@@ -28,8 +29,12 @@ int main (int argc, const char * argv[]) {
                                                userAgent:@"com.edgecase.spotbox"
                                                    error:nil];
     
-    // Initialize spotify player    
+    // Initialize playlist bootstrapper
+    PlaylistBootstrap *playlist_bootstrap = [[PlaylistBootstrap alloc] initWithDispatcher:dispatcher];
+    
+    // Initialize spotify player
     SpotboxPlayer *player = [[SpotboxPlayer alloc] initWithDispatcher:dispatcher];
+    
     [dispatcher setDelegate:player];
     [[SPSession sharedSession] setDelegate:player];
     
