@@ -11,28 +11,15 @@
 
 @class ZmqDispatch;
 
-@protocol ZmqDispatchDelegate <NSObject>
-
-@optional
-- (void) zmqDispatchDidReceivePlay:(NSString *)track_url;
-- (void) zmqDispatchDidReceiveData;
-- (void) zmqDispatchDidReceiveStop;
-- (void) zmqDispatchDidReceivePause;
-
-@end
-
-@interface ZmqDispatch : NSObject {
-  NSNotificationCenter *zmqNotificationCenter;
-}
+@interface ZmqDispatch : NSObject
 
 @property (strong)ZMQSocket *pub;
 @property (strong)ZMQSocket *sub;
 @property (strong)ZMQContext *ctx;
-@property (nonatomic, weak) id <ZmqDispatchDelegate> delegate;
 
 - (id) initWithContext:(ZMQContext *)ctx 
-             publishTo:(NSString *)pub_port 
-           subscribeTo:(NSString *)sub_port;
+             publishTo:(NSString *)pubPort 
+           subscribeTo:(NSString *)subPort;
 
 - (void) receiveData:(NSTimer *)timer;
 

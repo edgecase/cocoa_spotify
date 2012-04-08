@@ -10,19 +10,28 @@
 
 @implementation SpotboxPlayer
 
-@synthesize playback_manager, dispatcher;
+@synthesize playbackManager, dispatcher;
 
 - (id) initWithDispatcher:(ZmqDispatch *)aDispatcher {
   self = [super init];
   if (self) {
-    SPSession *session    = [SPSession sharedSession];
-    self.playback_manager = [[SPPlaybackManager alloc] initWithPlaybackSession:session];
-    self.dispatcher       = aDispatcher;
+    SPSession *session   = [SPSession sharedSession];
+    self.playbackManager = [[SPPlaybackManager alloc] initWithPlaybackSession:session];
+    self.dispatcher      = aDispatcher;
+    
+    // Add observers
     
     [self addObserver:self
-           forKeyPath:@"playback_manager.currentTrack"
+           forKeyPath:@"playbackManager.currentTrack"
               options:NSKeyValueObservingOptionNew
               context:nil];
+    
+    // Register for notifications
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportTrackProgress:) name:@"reportTrackProgress" object:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playTrack:) name:@"play" object:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseTrack:) name:@"pause" object:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopTrack:) name:@"stop" object:NULL];
   }
   return self;
 }
@@ -35,7 +44,7 @@
 // Observe currentTrack going to NULL, this signifies the end of a track
 //
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-  if ([keyPath isEqualToString:@"playback_manager.currentTrack"]) {
+  if ([keyPath isEqualToString:@"playbackManager.currentTrack"]) {
     if ([change valueForKey:@"new"] == [NSNull null]) {
       NSLog(@"track ended");
       [self sendMessage:@"spotbox:server::track_ended"];
@@ -43,77 +52,50 @@
   }
 }
 
-// Play a spotify track
-//
-- (void) play_track:(NSString *)track_str {
-  NSURL *track_url = [[NSURL alloc] initWithString:track_str];
-  SPTrack *track = [[SPSession sharedSession] trackForURL:track_url];
+// ********** ZmqDispatch Notifications ******* //
+
+- (void) playTrack:(NSNotification *) notification {
+  NSString *trackStr = [[[notification userInfo] valueForKey:@"args"] objectAtIndex:0];
+  NSURL *trackUrl    = [[NSURL alloc] initWithString:trackStr];
+  SPTrack *track     = [[SPSession sharedSession] trackForURL:trackUrl];
   
   if (track != nil) {
     if (!track.isLoaded) {
-      [self performSelector:@selector(play_track:) withObject:track_str afterDelay:0.1]; // track might not be loaded.
+      [self performSelector:@selector(playTrack:) withObject:trackStr afterDelay:0.1]; // track might not be loaded.
       return;
     }
     
     NSError *error = nil;
-    if (![self.playback_manager playTrack:track error:&error]) {
-      NSLog(@"shit went wrong: %@", error);
-    }
+    if (![self.playbackManager playTrack:track error:&error]) { NSLog(@"Unable to play track: %@", error); }
     
-    [self sendMessage:[NSString stringWithFormat:@"%@::%@", @"spotbox:server::playing", track_str]];
+    [self sendMessage:[NSString stringWithFormat:@"%@::%@", @"spotbox:server::playing", trackStr]];
     
-  } else { NSLog(@"WAT"); }
-} 
+  } else { NSLog(@"Track not found."); }
+}
 
-// Pause/Unpause track
-//
-- (void) pause_track {
-  if ([playback_manager isPlaying]) {
-    [playback_manager setIsPlaying:NO];
+- (void) pauseTrack:(NSNotification *) notification {
+  if ([playbackManager isPlaying]) {
+    [playbackManager setIsPlaying:NO];
     [self sendMessage:@"spotbox:server::paused"];
   } else {
-    NSTimeInterval track_position = [playback_manager trackPosition];
-    [playback_manager seekToTrackPosition:track_position];
-    [playback_manager setIsPlaying:YES];
+    NSTimeInterval trackPosition = [playbackManager trackPosition];
+    [playbackManager seekToTrackPosition:trackPosition];
+    [playbackManager setIsPlaying:YES];
     [self sendMessage:@"spotbox:server::unpaused"];
   }
 }
 
-// Stop a track
-//
-- (void) stop_track {
-  [playback_manager.playbackSession unloadPlayback];
-  [self sendMessage:@"spotbox:server::stopped"];
-}
-
-// Report track progress of currently playing track
-//
-- (void) report_track_progress {
-  if ([playback_manager isPlaying]) {
-    NSTimeInterval pos       = [playback_manager trackPosition];
-    NSString *track_position = [[NSString alloc] initWithFormat:@"%d", (long)pos];
-    [self sendMessage:[NSString stringWithFormat:@"%@::%@", @"spotbox:server::track_progress", track_position]];
+- (void) reportTrackProgress:(NSNotification *) notification {
+  if ([playbackManager isPlaying]) {
+    NSTimeInterval pos      = [playbackManager trackPosition];
+    NSString *trackPosition = [[NSString alloc] initWithFormat:@"%d", (long)pos];
+    [self sendMessage:[NSString stringWithFormat:@"%@::%@", @"spotbox:server::track_progress", trackPosition]];
   }
 }
 
-// ********** ZmqDispatch Delegate ******* //
-
-// Called when zmq dispatcher receives data. Assigns self.dispatcher so this class can publish
-// 
-- (void) zmqDispatchDidReceiveData {  
-  [self report_track_progress];
-}
-
-- (void) zmqDispatchDidReceivePlay:(NSString *)track_url {
-  [self play_track:track_url];
-}
-
-- (void) zmqDispatchDidReceiveStop {
-  [self stop_track];
-}
-
-- (void) zmqDispatchDidReceivePause {
-  [self pause_track];
+- (void) stopTrack:(NSNotification *) notification {
+  [playbackManager.playbackSession unloadPlayback];
+  [self sendMessage:@"spotbox:server::stopped"];
 }
 
 // **********  Session Delegate ********** //
@@ -146,6 +128,7 @@
 
 - (void) dealloc {
   [self removeObserver:self forKeyPath:@"playback_manager.currentTrack"];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

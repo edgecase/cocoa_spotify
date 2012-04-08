@@ -11,7 +11,7 @@
 		1522F232150E6647008E2EA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1522F22C150E6647008E2EA3 /* main.m */; };
 		1522F233150E6647008E2EA3 /* SpotboxPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1522F22E150E6647008E2EA3 /* SpotboxPlayer.m */; };
 		1522F234150E6647008E2EA3 /* ZmqDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1522F230150E6647008E2EA3 /* ZmqDispatch.m */; };
-		152ADC35151A50C20042128D /* PlaylistBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 152ADC34151A50C20042128D /* PlaylistBootstrap.m */; };
+		152ADC35151A50C20042128D /* SpotboxPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 152ADC34151A50C20042128D /* SpotboxPlaylist.m */; };
 		15628E4C1509480600288D72 /* libzmq.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15628E47150946EF00288D72 /* libzmq.dylib */; };
 		1566CCDE1509116E008ED86F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1566CCDD1509116E008ED86F /* Foundation.framework */; };
 		15DD48E6150E648C002870E0 /* CocoaLibSpotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DD48E5150E648C002870E0 /* CocoaLibSpotify.framework */; };
@@ -43,8 +43,8 @@
 		1522F22E150E6647008E2EA3 /* SpotboxPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotboxPlayer.m; sourceTree = "<group>"; };
 		1522F22F150E6647008E2EA3 /* ZmqDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZmqDispatch.h; sourceTree = "<group>"; };
 		1522F230150E6647008E2EA3 /* ZmqDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZmqDispatch.m; sourceTree = "<group>"; };
-		152ADC33151A50C20042128D /* PlaylistBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistBootstrap.h; sourceTree = "<group>"; };
-		152ADC34151A50C20042128D /* PlaylistBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistBootstrap.m; sourceTree = "<group>"; };
+		152ADC33151A50C20042128D /* SpotboxPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotboxPlaylist.h; sourceTree = "<group>"; };
+		152ADC34151A50C20042128D /* SpotboxPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotboxPlaylist.m; sourceTree = "<group>"; };
 		15628E47150946EF00288D72 /* libzmq.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzmq.dylib; path = usr/local/lib/libzmq.dylib; sourceTree = SDKROOT; };
 		15628E4F1509490300288D72 /* ZMQObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMQObjC.h; sourceTree = "<group>"; };
 		1566CCD91509116E008ED86F /* cocoa_spotify */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoa_spotify; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,8 +85,8 @@
 				1522F22C150E6647008E2EA3 /* main.m */,
 				1522F22D150E6647008E2EA3 /* SpotboxPlayer.h */,
 				1522F22E150E6647008E2EA3 /* SpotboxPlayer.m */,
-				152ADC33151A50C20042128D /* PlaylistBootstrap.h */,
-				152ADC34151A50C20042128D /* PlaylistBootstrap.m */,
+				152ADC33151A50C20042128D /* SpotboxPlaylist.h */,
+				152ADC34151A50C20042128D /* SpotboxPlaylist.m */,
 				1522F22F150E6647008E2EA3 /* ZmqDispatch.h */,
 				1522F230150E6647008E2EA3 /* ZmqDispatch.m */,
 			);
@@ -201,7 +201,7 @@
 				1522F232150E6647008E2EA3 /* main.m in Sources */,
 				1522F233150E6647008E2EA3 /* SpotboxPlayer.m in Sources */,
 				1522F234150E6647008E2EA3 /* ZmqDispatch.m in Sources */,
-				152ADC35151A50C20042128D /* PlaylistBootstrap.m in Sources */,
+				152ADC35151A50C20042128D /* SpotboxPlaylist.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

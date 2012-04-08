@@ -10,12 +10,12 @@
 #import "ZmqDispatch.h"
 #import <CocoaLibSpotify/CocoaLibSpotify.h>
 
-@interface PlaylistBootstrap : NSObject
+@interface SpotboxPlaylist : NSObject
 
-- (id) initWithDispatcher:(ZmqDispatch *)aDispatcher;
+- (id)   initWithDispatcher:(ZmqDispatch *)aDispatcher;
 - (void) reportPlaylistTracks:(SPPlaylist *)playlist;
-- (void) loadTracksFromPlaylist:(NSURL *)playlist_url;
+- (void) loadTracksFromPlaylist:(NSURL *)playlistUrl;
 
-@property(retain) ZmqDispatch *dispatcher;
+@property(strong) ZmqDispatch *dispatcher;
 
 @end

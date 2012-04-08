@@ -10,7 +10,7 @@
 #import "ZMQObjC.h"
 #import <CocoaLibSpotify/CocoaLibSpotify.h>
 #import "SpotboxPlayer.h"
-#import "PlaylistBootstrap.h"
+#import "SpotboxPlaylist.h"
 #import "ZmqDispatch.h"
 #import "config.h"
 #include "spotify_appkey.c"
@@ -18,25 +18,21 @@
 int main (int argc, const char * argv[]) {
   @autoreleasepool {
     
+    // Initialize and fiddle with Spotify Session
+    [SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_spotify_appkey length:g_spotify_appkey_size]
+                                               userAgent:@"com.edgecase.spotbox"
+                                                   error:nil];
     // ZMQ Initialization
     ZMQContext *zmq_ctx     = [[ZMQContext alloc] initWithIOThreads:1];
     NSString *pub_port      = @"tcp://127.0.0.1:12001";
     NSString *sub_port      = @"tcp://127.0.0.1:12000";
     ZmqDispatch *dispatcher = [[ZmqDispatch alloc] initWithContext:zmq_ctx publishTo:pub_port subscribeTo:sub_port];
               
-    // Initialize and fiddle with Spotify Session
-    [SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_spotify_appkey length:g_spotify_appkey_size]
-                                               userAgent:@"com.edgecase.spotbox"
-                                                   error:nil];
+    // Initialize spotbox classes
+    SpotboxPlaylist *playlistManager = [[SpotboxPlaylist alloc] initWithDispatcher:dispatcher];
+    SpotboxPlayer *playerManager     = [[SpotboxPlayer alloc] initWithDispatcher:dispatcher];
     
-    // Initialize playlist bootstrapper
-    PlaylistBootstrap *playlist_bootstrap = [[PlaylistBootstrap alloc] initWithDispatcher:dispatcher];
-    
-    // Initialize spotify player
-    SpotboxPlayer *player = [[SpotboxPlayer alloc] initWithDispatcher:dispatcher];
-    
-    [dispatcher setDelegate:player];
-    [[SPSession sharedSession] setDelegate:player];
+    [[SPSession sharedSession] setDelegate:playerManager];
     
     NSFileManager *fm  = [NSFileManager defaultManager];
     NSString *username = [fm stringWithFileSystemRepresentation:SPOTIFY_USERNAME length:10];
@@ -56,7 +52,7 @@ int main (int argc, const char * argv[]) {
     [run_loop addTimer:timer forMode:NSDefaultRunLoopMode];
     [run_loop run];    
     
-    // Close sockets later (TODO: not sure if necessary)
+    // Close sockets later
     [[zmq_ctx sockets] makeObjectsPerformSelector:@selector(close)];  
     return EXIT_SUCCESS;    
   }
