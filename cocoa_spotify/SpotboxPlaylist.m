@@ -17,7 +17,7 @@
   if (self) {
     self.dispatcher = aDispatcher;
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(load_playlist:) 
+                                             selector:@selector(loadPlaylist:) 
                                                  name:@"loadPlaylist" 
                                                object:nil];
   }
@@ -38,8 +38,8 @@
   NSString *playlistUrlStr = [[playlist spotifyURL] absoluteString];
   NSString *playlistName   = [playlist name];
   NSString *tracksStr      = [trackUrls componentsJoinedByString:@","];
-  NSString *msg            = [NSString stringWithFormat:@"spotbox:server::playlist_loaded::%@,%@,%@", playlistUrlStr, playlistName, tracksStr];
-  
+  NSString *msg            = [NSString stringWithFormat:@"spotbox:server::playlistLoaded::%@,%@,%@", playlistUrlStr, playlistName, tracksStr];
+
   [[dispatcher pub] sendData:[msg dataUsingEncoding:NSUTF8StringEncoding] withFlags:ZMQ_NOBLOCK];
 }
 
@@ -58,7 +58,7 @@
 
 //**************** ZmqDispatch Notifications *********************//
 
-- (void) load_playlist:(NSNotification *)notification {
+- (void) loadPlaylist:(NSNotification *)notification {
   NSString *playlistStr = [[[notification userInfo] valueForKey:@"args"] objectAtIndex:0];
   NSURL *playlistUrl = [[NSURL alloc] initWithString:playlistStr];
   

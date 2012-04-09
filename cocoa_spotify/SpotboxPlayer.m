@@ -28,9 +28,10 @@
     
     // Register for notifications
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportTrackProgress:) name:@"reportTrackProgress" object:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportTrackProgress:) name:@"didReceieveData" object:NULL];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playTrack:) name:@"play" object:NULL];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseTrack:) name:@"pause" object:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(unpauseTrack:) name:@"unpause" object:NULL];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopTrack:) name:@"stop" object:NULL];
   }
   return self;
@@ -46,8 +47,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
   if ([keyPath isEqualToString:@"playbackManager.currentTrack"]) {
     if ([change valueForKey:@"new"] == [NSNull null]) {
-      NSLog(@"track ended");
-      [self sendMessage:@"spotbox:server::track_ended"];
+      [self sendMessage:@"spotbox:server::trackEnded"];
     }
   }
 }
@@ -77,19 +77,21 @@
   if ([playbackManager isPlaying]) {
     [playbackManager setIsPlaying:NO];
     [self sendMessage:@"spotbox:server::paused"];
-  } else {
-    NSTimeInterval trackPosition = [playbackManager trackPosition];
-    [playbackManager seekToTrackPosition:trackPosition];
-    [playbackManager setIsPlaying:YES];
-    [self sendMessage:@"spotbox:server::unpaused"];
-  }
+  } 
+}
+  
+- (void) unpauseTrack:(NSNotification *) notification {
+  NSTimeInterval trackPosition = [playbackManager trackPosition];
+  [playbackManager seekToTrackPosition:trackPosition];
+  [playbackManager setIsPlaying:YES];
+  [self sendMessage:@"spotbox:server::unpaused"];
 }
 
 - (void) reportTrackProgress:(NSNotification *) notification {
   if ([playbackManager isPlaying]) {
     NSTimeInterval pos      = [playbackManager trackPosition];
     NSString *trackPosition = [[NSString alloc] initWithFormat:@"%d", (long)pos];
-    [self sendMessage:[NSString stringWithFormat:@"%@::%@", @"spotbox:server::track_progress", trackPosition]];
+    [self sendMessage:[NSString stringWithFormat:@"%@::%@", @"spotbox:server::trackProgress", trackPosition]];
   }
 }
 

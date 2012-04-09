@@ -54,7 +54,7 @@
 - (void) receiveData:(NSTimer *)timer {
   NSData *data = [sub receiveDataWithFlags:ZMQ_NOBLOCK];
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"didReceiveData" object:self];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didReceieveData" object:self];
   
   if (data) {
     NSString *msg               = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
