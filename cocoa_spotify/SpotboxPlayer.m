@@ -61,7 +61,7 @@
   
   if (track != nil) {
     if (!track.isLoaded) {
-      [self performSelector:@selector(playTrack:) withObject:trackStr afterDelay:0.1]; // track might not be loaded.
+      [self performSelector:@selector(playTrack:) withObject:notification afterDelay:0.1]; // track might not be loaded.
       return;
     }
     
