@@ -1,6 +1,7 @@
 # App
 app_key.c
 spotify_appkey.c
+spotify_appkey.key
 config.h
 
 # Xcode
