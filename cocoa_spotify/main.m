@@ -12,16 +12,16 @@
 #import "SpotboxPlayer.h"
 #import "SpotboxPlaylist.h"
 #import "ZmqDispatch.h"
-#import "config.h"
-#include "spotify_appkey.c"
 
 int main (int argc, const char * argv[]) {
   @autoreleasepool {
     
     NSArray *args = [[NSProcessInfo processInfo] arguments];
     
-    if ([args count] == 0) {
+    if ([args count] == 3) {
       NSLog(@"Error: Please supply the location of the file containing your appkey");
+      NSLog(@"");
+      NSLog(@"usage: cocoa_spotify ~/location/of/appkey.key username password");
       exit(1);
     } else {
       NSString *appkeyLocation = [args objectAtIndex:1];
@@ -33,16 +33,11 @@ int main (int argc, const char * argv[]) {
         exit(1);
       } else {
         NSData *key = [NSData dataWithContentsOfFile:path];
-        NSString *dataStr = [[NSString alloc] initWithData:key encoding:NSUTF8StringEncoding];
-        NSLog(@"dataStr %@", dataStr);
+        NSError *error = nil;
 
-
-        [SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithData:key] userAgent:@"com.edgecase.spotbox" error:nil];
-        
-    //    // Initialize and fiddle with Spotify Session
-    //    [SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithBytes:&g_spotify_appkey length:g_spotify_appkey_size]
-    //                                               userAgent:@"com.edgecase.spotbox"
-    //                                                   error:nil];
+        [SPSession initializeSharedSessionWithApplicationKey:[NSData dataWithData:key] userAgent:@"com.edgecase.spotbox" error:&error];
+        if (error != nil) { NSLog(@"error while creating session: %@", error); }
+                
         // ZMQ Initialization
         ZMQContext *zmq_ctx     = [[ZMQContext alloc] initWithIOThreads:1];
         NSString *pub_port      = @"tcp://127.0.0.1:12001";
@@ -54,12 +49,8 @@ int main (int argc, const char * argv[]) {
         SpotboxPlayer *playerManager     = [[SpotboxPlayer alloc] initWithDispatcher:dispatcher];
         
         [[SPSession sharedSession] setDelegate:playerManager];
-        
-        NSFileManager *fm  = [NSFileManager defaultManager];
-        NSString *username = [fm stringWithFileSystemRepresentation:SPOTIFY_USERNAME length:10];
-        NSString *password = [fm stringWithFileSystemRepresentation:SPOTIFY_PASSWORD length:10];
-        [[SPSession sharedSession] attemptLoginWithUserName:username
-                                                   password:password
+        [[SPSession sharedSession] attemptLoginWithUserName:[args objectAtIndex:2]
+                                                   password:[args objectAtIndex:3]
                                         rememberCredentials:NO];
 
         // create a timer for run loop
