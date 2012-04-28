@@ -93,7 +93,9 @@
     NSString *trackPosition = [[NSString alloc] initWithFormat:@"%d", (long)pos];
     NSString *currentTrack  = [[[playbackManager currentTrack] spotifyURL] absoluteString];
 
-    [self sendMessage:[NSString stringWithFormat:@"%@::%@::%@", @"spotbox:server::trackProgress", trackPosition, currentTrack]];
+    if (currentTrack && trackPosition) {
+      [self sendMessage:[NSString stringWithFormat:@"%@::%@::%@", @"spotbox:server::trackProgress", trackPosition, currentTrack]];
+    }
   }
 }
 
